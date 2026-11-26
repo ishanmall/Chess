@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Chess</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <main id="viewport-wrap">
+    <div id="canvas-container"></div>
+
+    <!-- Minimal Floating Controls: Computer, Local Player, Restart Match -->
+    <div id="top-controls">
+      <div class="control-bar">
+        <button class="ctrl-btn active" data-mode="ai">Computer</button>
+        <button class="ctrl-btn" data-mode="pvp">Local Player</button>
+        <button class="ctrl-btn restart" id="btn-restart">Restart Match</button>
+      </div>
+
+      <div class="status-row">
+        <div class="turn-pill">
+          <span class="turn-dot white" id="turn-dot"></span>
+          <span id="turn-text">White to Move</span>
+        </div>
+        <div class="thinking-pill hidden" id="thinking-pill">
+          <span class="spinner"></span>
+          <span>Computer Thinking...</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Promotion Modal -->
+  <div id="promo-modal" class="modal hidden">
+    <div class="modal-card">
+      <h3>Promote Pawn</h3>
+      <div class="promo-choices">
+        <button class="promo-btn" data-promo="5"><span>&#9813;</span>Queen</button>
+        <button class="promo-btn" data-promo="4"><span>&#9814;</span>Rook</button>
+        <button class="promo-btn" data-promo="3"><span>&#9815;</span>Bishop</button>
+        <button class="promo-btn" data-promo="2"><span>&#9816;</span>Knight</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="gameover-modal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="gameover-title">Checkmate</h2>
+      <p id="gameover-sub">White wins the match.</p>
+      <button id="btn-rematch" class="ctrl-btn restart">Restart Match</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
